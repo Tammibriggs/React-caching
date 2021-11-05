@@ -1,7 +1,14 @@
-function ImageView() {
+function ImageView({ result }) {
+
   return (
-    <div className="images">
-      {/*images will be displayed here*/}
+    <div className='images'>
+      {result.map((photos, index) => (
+        <img
+          key={index}
+          src={photos.cover_photo.urls.small}
+          alt=''
+        />
+      ))}
     </div>
   )
 }
