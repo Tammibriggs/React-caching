@@ -3,7 +3,7 @@ import {useEffect} from 'react'
 function ImageView({ result, photos }) {
   const namesArr = [];
   useEffect(() => {
-    if (photos !== "") {
+    if (photos !== "" && navigator.onLine) {
       result.forEach((photo) => {
       const parseURI = async (d) => {
         let reader = new FileReader()
@@ -30,11 +30,11 @@ function ImageView({ result, photos }) {
 
   return (
     <div className='images'>
-      {result.map((photos, index) => (
-        <img
+      {result.map((photos, index) => ( 
+      <img
           key={index}
-          src={photos.cover_photo.urls.small}
-          alt=''
+          src={navigator.onLine ? photos.cover_photo.urls.small : photos}
+          alt=""
         />
       ))}
     </div>

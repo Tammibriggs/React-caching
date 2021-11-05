@@ -7,24 +7,30 @@ function Search() {
   const [images, setImages] = useState('')
   const [result, SetResult] = useState([])
   const url = 'https://api.unsplash.com/search/collections'
-  const clientid = 'AjZEWDDK9030ODt0W-Lypidefagu_EVUzRTapbkcnlM';
+  const accessKey = 'AjZEWDDK9030ODt0W-Lypidefagu_EVUzRTapbkcnlM';
 
   const handleSubmitvalue = (e) => {
     e.preventDefault()
-    // Fetching images from unSplash with axios
-    axios
-      .get(url, {
-        params: {
-          client_id: clientid,
-          query: images,
-        },
-      })
-      .then((response) => {
-        SetResult(response.data.results)
-      })
-      .catch((error) => {
-        alert(error);
-      })
+    if (navigator.onLine) {
+      // Fetching images from unSplash with axios
+      axios
+        .get(url, {
+          params: {
+            client_id: accessKey,
+            query: images,
+          },
+        })
+        .then((response) => {
+          SetResult(response.data.results)
+        })
+        .catch((error) => {
+          alert(error);
+        })
+    } else {
+      // Get data from localstorage 
+      let resp = localStorage.getItem(images)
+      SetResult(JSON.parse(resp))
+    }
   }
 
   return (
