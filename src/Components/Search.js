@@ -4,7 +4,7 @@ import axios from "axios"
 
 
 function Search() {
-  const [image, setImage] = useState('')
+  const [images, setImages] = useState('')
   const [result, SetResult] = useState([])
   const url = 'https://api.unsplash.com/search/collections'
   const clientid = 'AjZEWDDK9030ODt0W-Lypidefagu_EVUzRTapbkcnlM';
@@ -16,7 +16,7 @@ function Search() {
       .get(url, {
         params: {
           client_id: clientid,
-          query: image,
+          query: images,
         },
       })
       .then((response) => {
@@ -34,12 +34,12 @@ function Search() {
         onSubmit={handleSubmitvalue}>
         <input
           type="search"
-          onChange={(e) => setImage(e.target.value)}
+          onChange={(e) => setImages(e.target.value)}
           placeholder='Enter image name'
         />
         <button type="submit">Search</button>
       </form>
-      <ImageView result={result}/>
+      <ImageView result={result} photos={images} />
     </>  
   )
 }
