@@ -5,7 +5,7 @@ import axios from "axios"
 
 function Search() {
   const [images, setImages] = useState('')
-  const [result, SetResult] = useState([])
+  const [result, setResult] = useState([])
   const url = 'https://api.unsplash.com/search/collections'
   const accessKey = 'AjZEWDDK9030ODt0W-Lypidefagu_EVUzRTapbkcnlM';
 
@@ -21,7 +21,7 @@ function Search() {
           },
         })
         .then((response) => {
-          SetResult(response.data.results)
+          setResult(response.data.results)
         })
         .catch((error) => {
           alert(error);
@@ -29,7 +29,7 @@ function Search() {
     } else {
       // Get data from localstorage 
       let resp = localStorage.getItem(images)
-      SetResult(JSON.parse(resp))
+      setResult(JSON.parse(resp))
     }
   }
 
